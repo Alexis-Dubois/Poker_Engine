@@ -25,3 +25,17 @@ class Card:
         self.val: str = val
         self.col: str = col
         self.numeric_val: int = VAL_TO_NUMERIC[val]
+
+    def __str__(self) -> str:
+        return self.val + self.col
+
+    def __lt__(self, other:Card) -> bool:
+        return self.numeric_val < other.numeric_val
+    
+    def __eq__(self, other:object) -> bool:
+        if type(other) is not Card:
+            return False
+        return self.numeric_val == other.numeric_val and self.col == other.col
+    
+    def __hash__(self) -> int:
+        return hash((self.val, self.col))
