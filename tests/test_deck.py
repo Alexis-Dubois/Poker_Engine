@@ -19,9 +19,24 @@ def test_draw_card():
     assert(len(deck1)==51)
     assert(Card("A", "♠") not in deck1)
 
-def test_draw_random_card():
+def test_choose_random_card():
     deck1:Deck = Deck(nbDeck=1)
-    card = deck1.draw_random_card()
+    card = deck1.choose_random_card()
+    deck1.remove_card(card)
     assert(type(card)==Card)
+    assert(len(deck1)==51)
+    assert(card not in deck1)
+
+def test_add_card():
+    deck1:Deck = Deck(nbDeck=0)
+    card = Card("A", "♠")
+    deck1.add_card(card)
+    assert(len(deck1)==1)
+    assert(card in deck1)
+
+def test_remove_card():
+    deck1:Deck = Deck(nbDeck=1)
+    card = Card("A", "♠")
+    deck1.remove_card(card)
     assert(len(deck1)==51)
     assert(card not in deck1)

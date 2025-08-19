@@ -3,8 +3,8 @@ import typing
 
 # ♠ ♥ ♦ ♣
 
-VAL_TO_NUMERIC: dict = {
-            "A":1,
+VAL_TO_NUMERIC: dict[str, int] = {
+            "A":100,
             "2":2,
             "3":3,
             "4":4,
@@ -30,6 +30,8 @@ class Card:
         return self.val + self.col
 
     def __lt__(self, other:Card) -> bool:
+        if not isinstance(other, Card):
+            return NotImplemented
         return self.numeric_val < other.numeric_val
     
     def __eq__(self, other:object) -> bool:
